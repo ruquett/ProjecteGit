@@ -1,6 +1,8 @@
 package projecteGit;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class ProjecteGit {
 
@@ -16,8 +18,23 @@ public class ProjecteGit {
 	
 	static int leerEntero(String texto, int min, int max) throws NumberFormatException, IOException {
 		
-		return 1;
-		
+		BufferedReader entrada = new BufferedReader(new InputStreamReader(System.in));
+		int dato;
+		boolean error=false;
+		do {
+			dato=0;
+			try {
+				System.out.println(texto+" ("+min+"-"+max+")");
+				dato=Integer.parseInt(entrada.readLine());
+				if (dato<min || dato>max) System.out.println("Incorrecto");
+				error=false;
+			}
+			catch (NumberFormatException e) {
+				System.out.println("Solo se admiten dígitos");
+				error=true;
+			}
+		} while (dato<min || dato>max || error);
+		return dato;
 	}
 	
 	public static void main(String[] args) {
